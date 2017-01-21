@@ -1,5 +1,12 @@
 #!/bin/bash
 
-for file in $(ls | egrep ".*\.$1$"); do
-    mv ${file} ${file/$1/$2}
-done
+
+if [ $# -ne 2 ]; then
+    echo "Invalid number of arguments." >&2
+    echo "Usage: ./extenchange [extension] [new extension]" >&2
+    exit
+else
+    for file in $(ls | egrep ".*\.$1$"); do
+	mv ${file} ${file/$1/$2}
+    done
+fi
